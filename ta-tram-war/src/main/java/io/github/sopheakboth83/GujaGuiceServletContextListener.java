@@ -18,6 +18,7 @@ import com.wadpam.guja.oauth2.web.OAuth2Filter;
 import com.wadpam.guja.oauth2.web.Oauth2ClientAuthenticationFilter;
 import com.wadpam.guja.persist.MardaoDatastoreModule;
 import com.wadpam.guja.web.CORSFilter;
+import io.github.sopheakboth83.service.TaTramService;
 import net.sf.mardao.dao.DatastoreSupplier;
 import net.sf.mardao.dao.Supplier;
 import org.slf4j.Logger;
@@ -74,6 +75,7 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
             LOGGER.info("Bind resources");
 
             //TODO: Bind your resources here
+              bind(TaTramService.class);
           }
 
           @Override
