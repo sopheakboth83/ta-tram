@@ -65,6 +65,11 @@
             <artifactId>guja-contact</artifactId>
             <version>${guja.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.wadpam.guja</groupId>
+            <artifactId>guja-contact</artifactId>
+            <version>${guja.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>joda-time</groupId>
@@ -170,21 +175,30 @@
         </profile>
 
         <profile>
-            <id>proto</id>
+            <id>apidocs-stage</id>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.google.protobuf.tools</groupId>
-                        <artifactId>maven-protoc-plugin</artifactId>
-                        <version>0.3.2</version>
-                        <configuration>
-                            <protocExecutable>/usr/local/bin/protoc</protocExecutable>
-                        </configuration>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
                         <executions>
                             <execution>
+                                <id>generate-service-docs</id>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <doclet>com.carma.swagger.doclet.ServiceDoclet</doclet>
+                                    <docletArtifact>
+                                        <groupId>com.carma</groupId>
+                                        <artifactId>swagger-doclet</artifactId>
+                                        <version>1.0.3</version>
+                                    </docletArtifact>
+                                    <reportOutputDirectory>${project.build.directory}/${project.build.finalName}</reportOutputDirectory>
+                                    <useStandardDocletOptions>false</useStandardDocletOptions>
+                                    <additionalparam>-apiVersion 1 -docBasePath http://feeder-stage.appspot.com/apidocs/guja/apidocs -apiBasePath http://feeder-stage.appspot.com/apidics/guja/apidocs</additionalparam>
+                                </configuration>
                                 <goals>
-                                    <goal>compile</goal>
-                                    <goal>testCompile</goal>
+                                    <goal>javadoc</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -192,7 +206,6 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 
 </project>

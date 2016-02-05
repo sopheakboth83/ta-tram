@@ -14,10 +14,14 @@ import com.wadpam.guja.config.GujaContactModule;
 import com.wadpam.guja.config.GujaCoreModule;
 import com.wadpam.guja.config.GujaGaeModule;
 import com.wadpam.guja.jackson.NonNullObjectMapperProvider;
+import com.wadpam.guja.oauth2.api.ConnectionResource;
+import com.wadpam.guja.oauth2.dao.DConnectionDaoBean;
 import com.wadpam.guja.oauth2.web.OAuth2Filter;
 import com.wadpam.guja.oauth2.web.Oauth2ClientAuthenticationFilter;
 import com.wadpam.guja.persist.MardaoDatastoreModule;
 import com.wadpam.guja.web.CORSFilter;
+import io.github.sopheakboth83.api.CompetitionResource;
+import io.github.sopheakboth83.dao.DCompetitionDaoBean;
 import io.github.sopheakboth83.service.TaTramService;
 import net.sf.mardao.dao.DatastoreSupplier;
 import net.sf.mardao.dao.Supplier;
@@ -38,12 +42,22 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
 
   private static final String APP_CONFIG_PROPERTY_FILE = "/WEB-INF/app.properties";
 
+  private Properties getConfigProperties() {
+      Properties properties = new Properties();
+      try {
+          properties.load(getClass().getResourceAsStream(APP_CONFIG_PROPERTY_FILE));
+      } catch (IOException e) {
+          LOGGER.error("Loading config", e);
+      }
+      return properties;
+  }
+
   @Override
   protected Injector getInjector() {
-
+      final Properties configProperties = new Properties();
     return Guice.createInjector(
         // bind both authorization server and federated:
-        new GujaCoreModule(true, true),
+        new GujaCoreModule(false, true),
         new GujaBaseModule(),
         new GujaGaeModule(),
         new GujaContactModule(),
@@ -52,15 +66,13 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
         new JerseyServletModule() {
           private Properties bindProperties() {
             LOGGER.info("Bind application properties");
-
-            Properties properties = new Properties();
             try {
-              properties.load(getServletContext().getResourceAsStream(APP_CONFIG_PROPERTY_FILE));
-              Names.bindProperties(binder(), properties);
+              configProperties.load(getServletContext().getResourceAsStream(APP_CONFIG_PROPERTY_FILE));
+              Names.bindProperties(binder(), configProperties);
             } catch (IOException e) {
               LOGGER.error("Failed to load app properties from resource file {} with error {}", APP_CONFIG_PROPERTY_FILE, e);
             }
-            return properties;
+            return configProperties;
           }
 
           private void bindDaos() {
@@ -69,6 +81,7 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
             bind(Supplier.class).to(DatastoreSupplier.class);
 
             //TODO: Bind your daos here
+              bind(DCompetitionDaoBean.class);
           }
 
           private void bindResources() {
@@ -76,6 +89,7 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
 
             //TODO: Bind your resources here
               bind(TaTramService.class);
+              bind(CompetitionResource.class);
           }
 
           @Override
@@ -83,6 +97,7 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
 
             // Bindings
             Properties props = bindProperties();
+              bind(Properties.class).toInstance(props);
 
             bindDaos();
             bindResources();
