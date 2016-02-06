@@ -17,7 +17,7 @@ public class DCompetitionDaoBean
 {
 
   @Inject
-  public DCompetitionDaoBean(Supplier<Object, Object, Object, Object> supplier) {
+  public DCompetitionDaoBean(Supplier supplier) {
     super(supplier);
   }
 
