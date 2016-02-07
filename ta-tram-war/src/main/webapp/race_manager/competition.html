@@ -1,0 +1,45 @@
+        <div class="col-sm-4">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Competition Details</div>
+                <table class="table">
+                    <tbody id="comp">
+                    <tr>
+                        <td>id</td>
+                        <td id="comp_id"></td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td><input id="comp_title" type="text"/></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="saveCompetitionButton" type="button" class="btn btn-sm btn-info" onclick="saveCompetition($('#comp_id').html())">Save Competition
+                            </button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Events</div>
+                <table class="table">
+                    <tbody id="events">
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>
+                            <button onclick="loadEvent($('#comp_id').html(), '')" id="createEventButton" type="button" class="btn btn-sm btn-info">Add Event...</button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>

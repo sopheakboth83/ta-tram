@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/competition.js"></script>
+    <script src="js/event.js"></script>
+    <script src="js/heat.js"></script>
+    <title>Welcome to Fredagsmys Competition Manager</title>
+</head>
+<body>
+<script>
+
+$(document).ready(function() {
+  $.ajaxSetup({ cache: true });
+  $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+    FB.init({
+      appId: '1520767301587499',
+      status: true,
+      version: 'v2.5' // or v2.0, v2.1, v2.2, v2.3
+    });
+    FB.getLoginStatus(updateStatusCallback);
+  });
+});
+
+
+</script>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Competition Manager</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="navbar_home"><a onclick="loadHome()" >Home</a></li>
+                <li id="navbar_sub2"><a id="a_sub2"></a></li>
+                <li id="navbar_login" class="active align-right"><a id="login" onclick="myFacebookLogin()" href="#">Login with
+                    Facebook</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+    <div id="main_div" class="row">
+
+    </div>
+
+</div>
+
+</body>
+</html>
