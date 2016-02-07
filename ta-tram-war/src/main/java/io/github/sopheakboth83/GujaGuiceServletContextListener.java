@@ -21,7 +21,9 @@ import com.wadpam.guja.oauth2.web.Oauth2ClientAuthenticationFilter;
 import com.wadpam.guja.persist.MardaoDatastoreModule;
 import com.wadpam.guja.web.CORSFilter;
 import io.github.sopheakboth83.api.CompetitionResource;
+import io.github.sopheakboth83.api.EventResource;
 import io.github.sopheakboth83.dao.DCompetitionDaoBean;
+import io.github.sopheakboth83.dao.DEventDaoBean;
 import io.github.sopheakboth83.service.TaTramService;
 import net.sf.mardao.dao.DatastoreSupplier;
 import net.sf.mardao.dao.Supplier;
@@ -82,6 +84,7 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
 
             //TODO: Bind your daos here
               bind(DCompetitionDaoBean.class);
+              bind(DEventDaoBean.class);
           }
 
           private void bindResources() {
@@ -90,6 +93,7 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
             //TODO: Bind your resources here
               bind(TaTramService.class);
               bind(CompetitionResource.class);
+              bind(EventResource.class);
           }
 
           @Override

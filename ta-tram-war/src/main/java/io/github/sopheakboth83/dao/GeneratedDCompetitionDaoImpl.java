@@ -21,7 +21,7 @@ import io.github.sopheakboth83.domain.DCompetition;
 /**
  * The DCompetition domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2016-02-05T19:52:31.714+0100.
+ * Generated on 2016-02-07T10:10:04.924+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDCompetitionDaoImpl

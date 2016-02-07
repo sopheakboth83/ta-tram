@@ -7,30 +7,27 @@ import java.nio.ByteBuffer;
 import net.sf.mardao.dao.Mapper;
 import net.sf.mardao.dao.Supplier;
 import net.sf.mardao.domain.AbstractEntityBuilder;
-import io.github.sopheakboth83.domain.DCompetition;
+import io.github.sopheakboth83.domain.DEvent;
 
 /**
- * The DCompetition domain-object specific mapping methods go here.
+ * The DEvent domain-object specific mapping methods go here.
  *
  * Generated on 2016-02-07T10:10:04.924+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
-public class DCompetitionMapper
-  implements Mapper<DCompetition, Long> {
+public class DEventMapper
+  implements Mapper<DEvent, Long> {
 
   private final Supplier supplier;
 
   public enum Field {
     ID("id"),
-    ADMINID("adminId"),
-    BEGINDATE("beginDate"),
+    COMPETITIONID("competitionId"),
     CREATEDBY("createdBy"),
     CREATEDDATE("createdDate"),
-    ENDDATE("endDate"),
     TITLE("title"),
     UPDATEDBY("updatedBy"),
-    UPDATEDDATE("updatedDate"),
-    URL("url");
+    UPDATEDDATE("updatedDate");
 
     private final String fieldName;
 
@@ -43,7 +40,7 @@ public class DCompetitionMapper
     }
   }
 
-  public DCompetitionMapper(Supplier supplier) {
+  public DEventMapper(Supplier supplier) {
     this.supplier = supplier;
   }
 
@@ -53,23 +50,20 @@ public class DCompetitionMapper
   }
 
   @Override
-  public DCompetition fromReadValue(Object value) {
-    final DCompetition entity = new DCompetition();
+  public DEvent fromReadValue(Object value) {
+    final DEvent entity = new DEvent();
 
     // set primary key:
     final Object key = supplier.getKey(value, Field.ID.getFieldName());
     entity.setId(supplier.toLongKey(key));
 
     // set all fields:
-    entity.setAdminId(supplier.getLong(value, Field.ADMINID.getFieldName()));
-    entity.setBeginDate(supplier.getDate(value, Field.BEGINDATE.getFieldName()));
+    entity.setCompetitionId(supplier.getLong(value, Field.COMPETITIONID.getFieldName()));
     entity.setCreatedBy(supplier.getString(value, Field.CREATEDBY.getFieldName()));
     entity.setCreatedDate(supplier.getDate(value, Field.CREATEDDATE.getFieldName()));
-    entity.setEndDate(supplier.getDate(value, Field.ENDDATE.getFieldName()));
     entity.setTitle(supplier.getString(value, Field.TITLE.getFieldName()));
     entity.setUpdatedBy(supplier.getString(value, Field.UPDATEDBY.getFieldName()));
     entity.setUpdatedDate(supplier.getDate(value, Field.UPDATEDDATE.getFieldName()));
-    entity.setUrl(supplier.getString(value, Field.URL.getFieldName()));
     return entity;
   }
 
@@ -94,22 +88,22 @@ public class DCompetitionMapper
   }
 
   @Override
-  public Long getId(DCompetition entity) {
+  public Long getId(DEvent entity) {
     return entity != null ? entity.getId() : null;
   }
 
   @Override
-  public Object getParentKey(DCompetition entity) {
+  public Object getParentKey(DEvent entity) {
     return null;
   }
 
   @Override
-  public void setParentKey(DCompetition entity, Object parentKey) {
+  public void setParentKey(DEvent entity, Object parentKey) {
     // this entity has no parent
   }
 
   @Override
-  public void updateEntityPostWrite(DCompetition entity, Object key, Object value) {
+  public void updateEntityPostWrite(DEvent entity, Object key, Object value) {
     entity.setId(supplier.toLongKey(key));
     entity.setCreatedBy(supplier.getString(value, Field.CREATEDBY.getFieldName()));
     entity.setCreatedDate(supplier.getDate(value, Field.CREATEDDATE.getFieldName()));
@@ -119,7 +113,7 @@ public class DCompetitionMapper
 
 @Override
   public String getKind() {
-    return DCompetition.class.getSimpleName();
+    return DEvent.class.getSimpleName();
   }
 
   @Override
@@ -128,21 +122,18 @@ public class DCompetitionMapper
   }
 
   @Override
-  public Object toWriteValue(DCompetition entity) {
+  public Object toWriteValue(DEvent entity) {
     final Long id = getId(entity);
     final Object parentKey = getParentKey(entity);
     final Object value = supplier.createWriteValue(parentKey, getKind(), id);
 
     // set all fields:
-    supplier.setLong(value, Field.ADMINID.getFieldName(), entity.getAdminId());
-    supplier.setDate(value, Field.BEGINDATE.getFieldName(), entity.getBeginDate());
+    supplier.setLong(value, Field.COMPETITIONID.getFieldName(), entity.getCompetitionId());
     supplier.setString(value, Field.CREATEDBY.getFieldName(), entity.getCreatedBy());
     supplier.setDate(value, Field.CREATEDDATE.getFieldName(), entity.getCreatedDate());
-    supplier.setDate(value, Field.ENDDATE.getFieldName(), entity.getEndDate());
     supplier.setString(value, Field.TITLE.getFieldName(), entity.getTitle());
     supplier.setString(value, Field.UPDATEDBY.getFieldName(), entity.getUpdatedBy());
     supplier.setDate(value, Field.UPDATEDDATE.getFieldName(), entity.getUpdatedDate());
-    supplier.setString(value, Field.URL.getFieldName(), entity.getUrl());
     return value;
   }
 
@@ -150,10 +141,10 @@ public class DCompetitionMapper
     return new Builder();
   }
 
-  public static class Builder extends AbstractEntityBuilder<DCompetition> {
+  public static class Builder extends AbstractEntityBuilder<DEvent> {
 
     protected Builder() {
-      super(new DCompetition());
+      super(new DEvent());
     }
 
     public Builder id(Long id) {
@@ -161,13 +152,8 @@ public class DCompetitionMapper
       return this;
     }
 
-    public Builder adminId(Long adminId) {
-      entity.setAdminId(adminId);
-      return this;
-    }
-
-    public Builder beginDate(Date beginDate) {
-      entity.setBeginDate(beginDate);
+    public Builder competitionId(Long competitionId) {
+      entity.setCompetitionId(competitionId);
       return this;
     }
 
@@ -178,11 +164,6 @@ public class DCompetitionMapper
 
     public Builder createdDate(Date createdDate) {
       entity.setCreatedDate(createdDate);
-      return this;
-    }
-
-    public Builder endDate(Date endDate) {
-      entity.setEndDate(endDate);
       return this;
     }
 
@@ -198,11 +179,6 @@ public class DCompetitionMapper
 
     public Builder updatedDate(Date updatedDate) {
       entity.setUpdatedDate(updatedDate);
-      return this;
-    }
-
-    public Builder url(String url) {
-      entity.setUrl(url);
       return this;
     }
 
