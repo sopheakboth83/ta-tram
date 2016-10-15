@@ -18,24 +18,30 @@ function reloadHeats(eventId) {
     }
 }
 
-function loadHeat(competitionId, id) {
+function loadHeat(competitionId, eventId, id) {
     $('#main_div').load('heat.html', function() {
+        $('#comp_id').html(competitionId);
+        $('#event_id').html(eventId);
         if ('' != id) {
-            reloadHeats(id));
+            reloadHeats(id);
 
             $.getJSON('/api/heats/' + id)
             .done(function(response) {
                 console.log(response.title);
-                $('#event_id').html(response.id);
-                $('#event_title').val(response.title);
+                $('#heat_id').html(response.id);
+                $('#heat_title').val(response.title);
             });
         }
     });
 }
 
-function saveHeat(competitionId) {
+function saveHeat(competitionId, eventId, id) {
     var createUrl = '/api/heats' + ('' != id ? '' : '/' + id);
-    var body = '{"title":"' + $('#comp_title').val() + '","competitionId":' + competitionId + '}';
+    var body = '{' +
+        (0 < id.length ? '"id":' + id + ',' : '') +
+        '"title":"' + $('#heat_title').val() +
+        '","competitionId":' + competitionId +
+        '","eventId":' + eventId + '}';
     $.ajax(createUrl,{
         method: 'POST',
         contentType: 'application/json',

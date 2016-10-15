@@ -1,0 +1,32 @@
+        <div class="col-sm-4">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Competition Tracking</div>
+                <table class="table">
+                    <tbody id="comp">
+                    <tr>
+                        <td>id</td>
+                        <td id="comp_id"></td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td id="comp_title"></td>
+                    </tr>
+                    <tr>
+                        <td>Current count</td>
+                        <td id="comp_count">0</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="trackOne" type="button" class="btn btn-sm btn-info" onclick="trackOne($('#comp_id').html(), $('#comp_count'))">Track One
+                            </button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>

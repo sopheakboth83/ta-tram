@@ -9,7 +9,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <appengine.target.version>1.9.18</appengine.target.version>
+        <appengine.target.version>1.9.42</appengine.target.version>
         <mardao.version>3.0.13</mardao.version>
         <guja.version>0.8.13-SNAPSHOT</guja.version>
     </properties>

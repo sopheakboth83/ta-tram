@@ -21,7 +21,7 @@ import io.github.sopheakboth83.domain.DEvent;
 /**
  * The DEvent domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2016-02-07T10:10:04.924+0100.
+ * Generated on 2016-02-08T19:15:05.306+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDEventDaoImpl

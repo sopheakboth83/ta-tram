@@ -25,26 +25,32 @@
     <application>ta-tram</application>
     <version>${appengine.app.version}</version>
     <threadsafe>true</threadsafe>
-    
+
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
-        <property name="guice.custom.loader" value="false" />
-        <property name="jersey.config.server.tracing.type" value="ALL" />
+        <property name="guice.custom.loader" value="false"/>
+        <property name="jersey.config.server.tracing.type" value="ALL"/>
     </system-properties>
 
     <static-files>
-        <include path="/robots.txt" />
-        <include path="/favicon.ico" />
-        <include path="/**.png" />
-        <include path="/**.gif" />
-        <include path="/**.html" />
-        <include path="/**.js" />
-        <include path="/**.css" />
-        <include path="/**.ttf" />
-        <include path="/**.woff" />
+        <include path="/robots.txt"/>
+        <include path="/favicon.ico"/>
+        <include path="/**.png"/>
+        <include path="/**.gif"/>
+        <include path="/**.html"/>
+        <include path="/**.js"/>
+        <include path="/**.css"/>
+        <include path="/**.ttf"/>
+        <include path="/**.woff"/>
 
         <!-- html static resources-->
-        <include path="/html/**.*" />
+        <include path="/html/**.*"/>
 
-  </static-files>
+    </static-files>
+
+    <!-- Optional: Enable Inbound Service to get notified when a client connects to or disconnects from a channel -->
+    <inbound-services>
+        <service>channel_presence</service>
+    </inbound-services>
+
 </appengine-web-app>

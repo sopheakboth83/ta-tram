@@ -1,0 +1,53 @@
+        <div class="col-sm-4">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Heat Details</div>
+                <table class="table">
+                    <tbody id="comp">
+                    <tr>
+                        <td>competitionId</td>
+                        <td id="comp_id"></td>
+                    </tr>
+                    <tr>
+                        <td>eventId</td>
+                        <td id="event_id"></td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td id="heat_id"></td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td><input id="heat_title" type="text"/></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="saveButton" type="button" class="btn btn-sm btn-info" onclick="saveHeat($('#comp_id').html(),$('#event_id').html(),$('#heat_id').html())">Save Heat
+                            </button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Participants</div>
+                <table class="table">
+                    <tbody id="events">
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>
+                            <button onclick="loadParticipant($('#heat_id').html())" id="addParticipantButton" type="button" class="btn btn-sm btn-info">Add Participant...</button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>

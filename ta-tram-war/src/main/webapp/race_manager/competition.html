@@ -43,3 +43,26 @@
                 </table>
             </div>
         </div>
+
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tracking</div>
+                <table class="table">
+                    <tbody id="tracking">
+                    <tr>
+                        <td id="track_info">
+                            <button onclick="viewTrack($('#comp_id').html(), $('#login').attr('userId'))">View Progress</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>
+                            <button onclick="loadTrack($('#comp_id').html())" id="trackCompetitionButton" type="button" class="btn btn-sm btn-info">Track...</button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>

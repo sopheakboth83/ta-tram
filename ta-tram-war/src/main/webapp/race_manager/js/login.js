@@ -28,7 +28,8 @@ function gujaSignin(authResponse) {
         expires_in: authResponse.expiresIn
     })
     .done(function(data) {
-        console.log(data)
+        console.log(data);
+        $('#login').attr('userId', data.userId);
     });
 }
 
